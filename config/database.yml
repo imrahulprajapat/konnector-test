@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: password
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: konnector_test_development
+
+test:
+  <<: *default
+  database: konnector_test_test
+
+production:
+  <<: *default
+  database: konnector_test_production
+  username: konnector_test
+  password: <%= ENV["KONNECTOR_TEST_DATABASE_PASSWORD"] %>

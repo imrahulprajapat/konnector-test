@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def filter
     campaign_names = params[:campaign_names].split(',')
-    binding.pry
+
     render :json => User.json_search(campaign_names), status: :ok
   end
 

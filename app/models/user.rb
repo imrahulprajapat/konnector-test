@@ -2,8 +2,10 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :email, uniqueness: true
 
+  # right now we are searching with scope name json_search
   scope :json_search, ->(list_names) { select{|user| (user.campaigns_list.pluck('campaign_name') & list_names).any? } }
 
+  ## we have this approach for filter out records
   def self.filter(list_names)
     list_names = ["cam1", "cam2"]
 
